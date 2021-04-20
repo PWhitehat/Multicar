@@ -3,6 +3,8 @@ var database;
 var canvas, bgimg;
 var playerCount = 0;
 var form, player, game;
+var allPlayers;
+var distance = 0;
 
 function setup(){
 
@@ -24,6 +26,17 @@ function showerror() {
 
 function draw() {
 
+    if (playerCount === 4) {
 
+        game.updateState(1);
+
+    }
+
+    if (gameState === 1) {
+
+        clear();
+        game.play();
+
+    }
 
 }
