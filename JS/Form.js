@@ -21,10 +21,10 @@ class Form {
         var title = createElement('h2');
 
         title.html("Car Racing Game");
-        title.position(450, 100);
+        title.position(displayWidth / 2 - 50, 0);
 
-        this.input.position(450, 160);
-        this.button.position(450, 200);
+        this.input.position(displayWidth / 2 - 40, displayHeight / 2 - 80);
+        this.button.position(displayWidth / 2 + 30, displayHeight / 2);
 
         this.button.mousePressed(() => {
 
@@ -39,7 +39,7 @@ class Form {
             player.updatepCount(playerCount);
 
             this.greeting.html("Hello " + player.name + ", others will join soon!");
-            this.greeting.position(400,160);
+            this.greeting.position(displayWidth / 2 - 70, displayHeight / 4);
 
         });
 
