@@ -6,6 +6,17 @@ var form, player, game;
 var allPlayers;
 var distance = 0;
 var cars, car1, car2, car3, car4;
+var c1img, c2img, c3img, c4img, timg;
+
+function preload() {
+
+    c1img = loadImage("../images/car1.png");
+    c2img = loadImage("../images/car2.png");
+    c3img = loadImage("../images/car3.png");
+    c4img = loadImage("../images/car4.png");
+    timg = loadImage("../images/track.png");
+
+}
 
 function setup(){
 
@@ -38,6 +49,13 @@ function draw() {
         clear();
         game.play();
         
+    }
+
+    if (gameState === 2) {
+
+        game.end();
+        game.updateState(2);
+
     }
 
 }
