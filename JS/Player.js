@@ -5,6 +5,7 @@ class Player {
         this.index = null;
         this.distance = 0;
         this.name = null;
+        this.rank = null;
 
     }
 
@@ -12,11 +13,33 @@ class Player {
 
         var pcref = database.ref('playerCount');
 
-        pcref.on("value", function(data) {
+        pcref.on("value", (data) => {
 
             playerCount = data.val();
         
         });
+
+    }
+
+    getfinPlayers() {
+
+        database.ref('finishedPlayers').on("value", (data) => {
+
+            finishedPlayer = data.val();
+
+        });
+
+    }
+
+    static updatefinPlayers() {
+
+        database.ref('/').update({
+
+            finishedPlayers: finishedPlayer + 1
+
+        });
+
+        this.rank = this.rank + 1;
 
     }
 

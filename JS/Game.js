@@ -10,7 +10,7 @@ class Game {
 
         var gsref = database.ref('gameState');
 
-        gsref.on("value", function(data) {
+        gsref.on("value", (data) => {
 
             gameState = data.val();
         
@@ -70,6 +70,8 @@ class Game {
 
         Player.getPlayerinfo();
 
+        player.getfinPlayers();
+
         if (allPlayers !== undefined) {
 
             background(rgb(198, 135, 103));
@@ -114,16 +116,20 @@ class Game {
 
         }
 
-        if (keyIsDown(UP_ARROW) && player.index !== null) {
+        if (keyIsDown(UP_ARROW) && player.index !== null && passedFinish === false) {
 
             player.distance += 10;
             player.update();
 
         }
 
-        if (player.distance > 3800) {
+        if (player.distance > 400 && passedFinish === false) {
 
-            gameState = 2;
+            //gameState = 2;
+            player.rank = finishedPlayer;
+            Player.updatefinPlayers();
+            player.update();
+            passedFinish = true;
 
         }
 
@@ -131,9 +137,46 @@ class Game {
 
     }
 
-    end() {
+    displayRank() {
 
-        
+        camera.position.x = 0;
+        camera.position.y = 0;
+
+        imageMode(CENTER);
+        Player.getPlayerinfo();
+        image(gold, 0, -100, 200, 300);
+        image(silver, displayWidth / 4, -100 + displayHeight / 10, 200, 300);
+        image(bronze, displayWidth / -4, -100, + displayHeight / 9, 200, 300);
+        textAlign(CENTER);
+        textSize(50);
+
+        for (var i in allPlayers) {
+
+            if (allPlayers[i].rank === 1) {
+
+                text("First! " + allPlayers[i].name, 0, 85);
+
+            }
+
+            if (allPlayers[i].rank === 2) {
+
+                text("Second! " + allPlayers[i].name, -350, 175);
+
+            }
+
+            if (allPlayers[i].rank === 3) {
+
+                text("Third! " + allPlayers[i].name, 350, 175);
+
+            }
+
+            else {
+
+                text(allPlayers[i].name + ", Try again next time!", 0, 200);
+
+            }
+
+        }
 
     }
 

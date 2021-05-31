@@ -50,6 +50,12 @@ class Form {
 
             player.updatepCount(0);
             game.updateState(0);
+            database.ref('/').update({
+                
+                players: null,
+                finishedPlayers: 0
+
+            });
         
         });
 
